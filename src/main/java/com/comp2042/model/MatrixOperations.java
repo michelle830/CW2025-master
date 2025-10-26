@@ -1,3 +1,5 @@
+// Refactored version - verified collision logic (testing commit)
+
 package com.comp2042.model;
 
 import java.util.ArrayDeque;
