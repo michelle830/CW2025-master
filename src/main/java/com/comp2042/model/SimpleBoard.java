@@ -1,3 +1,5 @@
+// refactor: improved board structure for clarity
+
 package com.comp2042.model;
 
 import com.comp2042.logic.bricks.Brick;
