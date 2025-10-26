@@ -1,5 +1,8 @@
-package com.comp2042;
+package com.comp2042.controller;
 
+import com.comp2042.view.GameOverPanel;
+import com.comp2042.view.NotificationPanel;
+import com.comp2042.model.*;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.beans.property.BooleanProperty;
