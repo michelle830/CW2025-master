@@ -1,3 +1,5 @@
+// Git test: first refactor step for coursework progress tracking
+
 package com.comp2042;
 
 import java.util.ArrayDeque;
@@ -93,3 +95,5 @@ public class MatrixOperations {
     }
 
 }
+
+
