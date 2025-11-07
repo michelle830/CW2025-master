@@ -1,15 +1,17 @@
 package com.comp2042.controller;
 
 import com.comp2042.model.*;
+import com.comp2042.view.GameOverPanel;
 
 public class GameController implements InputEventListener {
 
-    private Board board = new SimpleBoard(25, 10);
-
+    private final Board board;
     private final GuiController viewGuiController;
 
-    public GameController(GuiController c) {
-        viewGuiController = c;
+    public GameController(GuiController controller) {
+        this.viewGuiController = controller;
+        this.board = new SimpleBoard(25,10);
+
         board.createNewBrick();
         viewGuiController.setEventListener(this);
         viewGuiController.initGameView(board.getBoardMatrix(), board.getViewData());
@@ -19,25 +21,31 @@ public class GameController implements InputEventListener {
     @Override
     public DownData onDownEvent(MoveEvent event) {
         boolean canMove = board.moveBrickDown();
-        ClearRow clearRow = null;
+        ClearRow cleared = null;
+
         if (!canMove) {
+            // Brick has landed - merge and create a new one
             board.mergeBrickToBackground();
-            clearRow = board.clearRows();
-            if (clearRow.getLinesRemoved() > 0) {
-                board.getScore().add(clearRow.getScoreBonus());
+            cleared = board.clearRows();
+
+            // Add score if any rows were cleared
+            if (cleared.getLinesRemoved() > 0) {
+                board.getScore().add(cleared.getScoreBonus());
             }
+
             if (board.createNewBrick()) {
                 viewGuiController.gameOver();
+                return new DownData(cleared, board.getViewData());
             }
 
             viewGuiController.refreshGameBackground(board.getBoardMatrix());
-
         } else {
             if (event.getEventSource() == EventSource.USER) {
                 board.getScore().add(1);
             }
         }
-        return new DownData(clearRow, board.getViewData());
+
+        return new DownData(cleared, board.getViewData());
     }
 
     @Override
