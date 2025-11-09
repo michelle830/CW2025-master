@@ -35,6 +35,9 @@ public class GuiController implements Initializable {
     private Label scoreLabel;
 
     @FXML
+    private Label instructionsLabel;
+
+    @FXML
     private GridPane gamePanel;
 
     @FXML
@@ -57,6 +60,9 @@ public class GuiController implements Initializable {
     private final BooleanProperty isPause = new SimpleBooleanProperty(false);
 
     private final BooleanProperty isGameOver = new SimpleBooleanProperty(false);
+
+    @FXML
+    private javafx.scene.control.Button pauseButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -86,6 +92,9 @@ public class GuiController implements Initializable {
                 }
                 if (keyEvent.getCode() == KeyCode.N) {
                     newGame(null);
+                }
+                if (keyEvent.getCode() == KeyCode.P) {
+                    togglePause(null);;
                 }
             }
         });
@@ -231,5 +240,19 @@ public class GuiController implements Initializable {
 
     public void pauseGame(ActionEvent actionEvent) {
         gamePanel.requestFocus();
+    }
+
+    public void togglePause(ActionEvent actionEvent) {
+        if (isPause.getValue()) {
+            // Resume
+            isPause.setValue(false);
+            timeLine.play();
+            instructionsLabel.setText("Press P to Pause/Resume | Press N for New Game");
+        } else {
+            //Pause
+            isPause.setValue(true);
+            timeLine.pause();
+            instructionsLabel.setText("Game Paused - Press P to Resume");
+        }
     }
 }
