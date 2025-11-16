@@ -20,10 +20,10 @@ public class SimpleBoard implements Board {
     private Point currentOffset;
     private final Score score;
 
-    public SimpleBoard(int width, int height) {
+    public SimpleBoard(int height, int width) {
         this.width = width;
         this.height = height;
-        this.currentGameMatrix = new int[width][height];
+        this.currentGameMatrix = new int[height][width];
         this.brickGenerator = new RandomBrickGenerator();
         this.brickRotator = new BrickRotator();
         this.score = new Score();
@@ -51,7 +51,7 @@ public class SimpleBoard implements Board {
 
     @ Override
     public boolean moveBrickDown() {
-        return tryMove(0, -1);
+        return tryMove(0, 1);
     }
 
     @Override
@@ -149,6 +149,6 @@ public class SimpleBoard implements Board {
     public void newGame() {
         currentGameMatrix = new int[width][height];
         score.reset();
-        createNewBrick()
+        createNewBrick();
     }
 }
