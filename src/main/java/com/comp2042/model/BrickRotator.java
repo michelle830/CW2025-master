@@ -1,6 +1,7 @@
-package com.comp2042.model;
+package com.comp2042.model.game;
 
 import com.comp2042.logic.bricks.Brick;
+import com.comp2042.model.data.NextShapeInfo;
 
 public class BrickRotator {
 
@@ -26,5 +27,7 @@ public class BrickRotator {
         currentShape = 0;
     }
 
-
+    public Brick getBrick() {
+        return this.brick;
+    }
 }

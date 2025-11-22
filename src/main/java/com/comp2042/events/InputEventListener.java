@@ -1,8 +1,4 @@
-package com.comp2042.controller;
-
-import com.comp2042.model.DownData;
-import com.comp2042.model.MoveEvent;
-import com.comp2042.model.ViewData;
+package com.comp2042;
 
 public interface InputEventListener {
 
@@ -15,4 +11,12 @@ public interface InputEventListener {
     ViewData onRotateEvent(MoveEvent event);
 
     void createNewGame();
+
+    // new:
+    DownData onHardDrop(); // triggered by Space
+    ViewData onHoldEvent(); // triggered by Shift
+
+    enum EventType {
+        DOWN, LEFT, RIGHT, ROTATE
+    }
 }

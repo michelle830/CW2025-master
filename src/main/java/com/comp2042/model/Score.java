@@ -1,4 +1,4 @@
-package com.comp2042.model;
+package com.comp2042.model.game;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
@@ -11,11 +11,11 @@ public final class Score {
         return score;
     }
 
-    public void add(int i){
-        score.setValue(score.getValue() + i);
+    public void add(int value){
+        score.set(score.get() + value);
     }
 
     public void reset() {
-        score.setValue(0);
+        score.set(0);
     }
 }

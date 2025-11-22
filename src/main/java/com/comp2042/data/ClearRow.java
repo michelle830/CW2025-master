@@ -1,4 +1,6 @@
-package com.comp2042.model;
+package com.comp2042.model.data;
+
+import com.comp2042.util.MatrixOperations;
 
 public final class ClearRow {
 
